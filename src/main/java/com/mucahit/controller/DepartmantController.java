@@ -62,8 +62,14 @@ public class DepartmantController {
 	public ResponseEntity delete(@RequestBody Departmant departmant) {
 		System.out.println("delete called");
 		System.out.println(departmant.toString());
+		System.out.println("denmee");
+		System.out.println("denmee");
+
+		System.out.println("denmee");
+
 		departmantService.delete(departmant.getD_id());
 	    return new ResponseEntity(HttpStatus.OK);
+	    
 	    
 	}
 
