@@ -1,6 +1,8 @@
 package com.mucahit.entity;
 
 
+
+
 public class Departmant {
 	private Integer d_id;
 	private Integer departmant;
