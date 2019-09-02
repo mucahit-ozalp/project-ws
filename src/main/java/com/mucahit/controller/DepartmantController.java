@@ -22,6 +22,7 @@ import com.mucahit.entity.Departmant;
 public class DepartmantController {
 
 	public DepartmantService departmantService;
+
 	public DepartmantController(DepartmantService departmantService) {
 		this.departmantService = departmantService;
 	}
@@ -31,44 +32,41 @@ public class DepartmantController {
 		System.out.println("getAll called");
 		return new ResponseEntity<List<Departmant>>(departmantService.getAll(), HttpStatus.OK);
 	}
-	
-	/*@GetMapping("/{id}")
-	public ResponseEntity getOne(@PathVariable("id") 	int id) {
-		System.out.println("getone called");
-		return new ResponseEntity(departmantService.getOne(id), HttpStatus.OK);
-		
-	}*/
+
 	@PostMapping(path = "/getone", consumes = "application/json", produces = "application/json")
 	public ResponseEntity getOne(@RequestBody Departmant departmant) {
 		System.out.println("getone called");
+		
 		System.out.println(departmant.toString());
-	    return new ResponseEntity(departmantService.getOne(departmant.getD_id()),HttpStatus.OK);
+		return new ResponseEntity(departmantService.getOne(departmant.getD_id()), HttpStatus.OK);
 	}
-	
+
 	@PostMapping(path = "/save", consumes = "application/json", produces = "application/json")
 	public ResponseEntity save(@RequestBody Departmant departmant) {
 		System.out.println("save called");
 		System.out.println(departmant.toString());
+		
 		departmantService.save(departmant);
-	    return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity(HttpStatus.OK);
 	}
+
 	@PostMapping(path = "/update", consumes = "application/json", produces = "application/json")
 	public ResponseEntity update(@RequestBody Departmant departmant) {
 		System.out.println("update called");
 		System.out.println(departmant.toString());
 		departmantService.update(departmant);
-	    return new ResponseEntity(HttpStatus.OK);
-	    
+		return new ResponseEntity(HttpStatus.OK);
+
 	}
+
 	@DeleteMapping(path = "/delete", consumes = "application/json", produces = "application/json")
 	public ResponseEntity delete(@RequestBody Departmant departmant) {
 		System.out.println("delete called");
 		System.out.println(departmant.toString());
 
 		departmantService.delete(departmant.getD_id());
-	    return new ResponseEntity(HttpStatus.OK);
-	    
-	    
+		return new ResponseEntity(HttpStatus.OK);
+
 	}
 
 }

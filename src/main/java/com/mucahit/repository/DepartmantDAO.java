@@ -110,7 +110,7 @@ public class DepartmantDAO implements DepartmantI {
 
 			PreparedStatement preparedStatement = jdbcConnect.JDBConnection().prepareStatement(Sqlqueries.get_save_department);
 			
-			preparedStatement.setInt(1, d.getDepartmant());
+			preparedStatement.setInt(1, d.getDepartmant( ));
 			preparedStatement.setInt(2, d.getComponent());
 			
 			preparedStatement.executeUpdate();
