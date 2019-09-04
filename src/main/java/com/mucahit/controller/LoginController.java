@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +26,32 @@ public class LoginController {
 		this.userService = userService;
 	}
 
-	@PostMapping(path = "/accessUser", consumes = "application/json", produces = "application/json")
+	@GetMapping(path = "/accessUser", consumes = "application/json", produces = "application/json")
 	public ResponseEntity accessUser(@RequestBody User user) {
 		System.out.println("access called");
-		
+
 		System.out.println(user.toString());
-		
 
 		return new ResponseEntity(userService.accessUser(user.getKullanici_adi(), user.getParola()), HttpStatus.OK);
 
 	}
+
+	@PostMapping(path = "/updatehata", consumes = "application/json", produces = "application/json")
+	public ResponseEntity update(@RequestBody User user) {
+		System.out.println("updatehata called");
+		System.out.println(user.toString());
+		userService.updatehata(user);
+		return new ResponseEntity(HttpStatus.OK);
+
+	}
+	/*@GetMapping(path = "/updateblok", consumes = "application/json", produces = "application/json")
+	public ResponseEntity updateblok(@RequestBody User user) {
+		System.out.println("updateblok called");
+		System.out.println(user.toString());
+		
+		return new ResponseEntity(userService.updateblok(user.getBlok_tarih()),HttpStatus.OK);
+
+	}
+	*/
+	
 }

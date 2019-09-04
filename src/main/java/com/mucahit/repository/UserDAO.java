@@ -56,4 +56,29 @@ public class UserDAO implements UserI {
 
 	}
 
+	@Override
+	public void updatehata(User u) {
+		
+		try {
+			PreparedStatement preparedStatement = jdbcConnect.JDBConnection()
+					.prepareStatement(Sqlqueries.get_updatehata_user);
+			preparedStatement.setInt(1, u.getHatali_giris());
+			preparedStatement.setString(2, u.getKullanici_adi());
+
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	// @Override
+	// public User updateblok(String blok_tarih) {
+
+	// return user;
+	// }
+
 }

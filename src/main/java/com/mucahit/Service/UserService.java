@@ -27,4 +27,22 @@ public class UserService implements UserI{
 		return userDao.accessUser(kullanici_adi, parola) ;
 	}
 
+
+
+	@Override
+	public void updatehata(User u) {
+		 userDao.updatehata(u);
+		
+	}
+
+
+
+	//@Override
+	/*public User updateblok(String blok_tarih) {
+
+		
+		return userDao.updateblok(blok_tarih);
+	}
+	*/
+
 }
