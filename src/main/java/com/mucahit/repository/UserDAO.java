@@ -45,10 +45,18 @@ public class UserDAO implements UserI {
 				user.setDk_id(rs.getInt("dk_id"));
 
 			}
+			if(user.getKullanici_adi()==null) {
+				preparedStatement =jdbcConnect.JDBConnection().prepareStatement(Sqlqueries.get_login_hata_user);
+				rs= preparedStatement.executeQuery();
+				while(rs.next())
+				{user.setHatali_giris(rs.getInt("hatali_giris"));
+				
+			}
+			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			user = null;
+			
 			e.printStackTrace();
 		}
 
@@ -58,10 +66,11 @@ public class UserDAO implements UserI {
 
 	@Override
 	public void updatehata(User u) {
+		User user=null;
 		
 		try {
 			PreparedStatement preparedStatement = jdbcConnect.JDBConnection()
-					.prepareStatement(Sqlqueries.get_updatehata_user);
+					.prepareStatement(Sqlqueries.get_update_hata);
 			preparedStatement.setInt(1, u.getHatali_giris());
 			preparedStatement.setString(2, u.getKullanici_adi());
 

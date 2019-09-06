@@ -41,7 +41,7 @@ public class LoginController {
 		System.out.println("updatehata called");
 		System.out.println(user.toString());
 		userService.updatehata(user);
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity(null,HttpStatus.OK);
 
 	}
 	/*@GetMapping(path = "/updateblok", consumes = "application/json", produces = "application/json")

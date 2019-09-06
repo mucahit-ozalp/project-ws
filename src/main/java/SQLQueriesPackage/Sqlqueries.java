@@ -9,7 +9,8 @@ public class Sqlqueries {
 	public static final String get_update_department="UPDATE departman_db SET departman=?,companent=? WHERE d_id=?";
 	public static final String get_delete_department="DELETE FROM departman_db where d_id=?";
 	public static final String get_login_user = "Select * from kullanici_db where kullanici_adi=? and parola=?";
-	public static final String get_updatehata_user="UPDATE kullanici_db SET hatali_giris=? WHERE kullanici_adi=?";
+	public static final String get_login_hata_user="Select hatali_giris from kullanici_db where kullanici_adi=?";
+	public static final String get_update_hata="UPDATE kullanici_db SET hatali_giris=? WHERE kullanici_adi=?";
 	
 	
 }
