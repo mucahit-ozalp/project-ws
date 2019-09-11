@@ -1,6 +1,7 @@
 package com.mucahit.entity;
 
-public class User {
+
+public class User  {
 	private Integer k_id;
 	private String kullanici_adi;
 	private String parola;
@@ -8,6 +9,8 @@ public class User {
 	private String giris_tarihi;
 	private String blok_tarih;
 	private Integer dk_id;
+	
+	
 	
 	
 	public User(Integer k_id, String kullanici_adi, String parola, Integer hatali_giris, String giris_tarihi,
@@ -20,6 +23,7 @@ public class User {
 		this.giris_tarihi = giris_tarihi;
 		this.blok_tarih = blok_tarih;
 		this.dk_id = dk_id;
+		
 	}
 	public User() {
 		

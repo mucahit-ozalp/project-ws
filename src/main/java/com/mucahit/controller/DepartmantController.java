@@ -17,7 +17,7 @@ import com.mucahit.Service.DepartmantService;
 import com.mucahit.entity.Departmant;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "/departmant")
 public class DepartmantController {
 

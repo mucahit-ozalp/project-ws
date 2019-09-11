@@ -16,7 +16,7 @@ import com.mucahit.entity.Departmant;
 import com.mucahit.entity.User;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "/login")
 public class LoginController {
 
@@ -26,7 +26,7 @@ public class LoginController {
 		this.userService = userService;
 	}
 
-	@GetMapping(path = "/accessUser", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/accessUser", consumes = "application/json", produces = "application/json")
 	public ResponseEntity accessUser(@RequestBody User user) {
 		System.out.println("access called");
 
@@ -36,7 +36,7 @@ public class LoginController {
 
 	}
 
-	@PostMapping(path = "/updatehata", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/update", consumes = "application/json", produces = "application/json")
 	public ResponseEntity update(@RequestBody User user) {
 		System.out.println("updatehata called");
 		System.out.println(user.toString());

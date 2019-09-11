@@ -29,8 +29,7 @@ public class UserDAO implements UserI {
 
 		try {
 
-			PreparedStatement preparedStatement = jdbcConnect.JDBConnection()
-					.prepareStatement(Sqlqueries.get_login_user);
+			PreparedStatement preparedStatement = jdbcConnect.JDBConnection().prepareStatement(Sqlqueries.get_login_user);
 			preparedStatement.setString(1, kullanici_adi);
 			preparedStatement.setString(2, parola);
 
@@ -47,9 +46,12 @@ public class UserDAO implements UserI {
 			}
 			if(user.getKullanici_adi()==null) {
 				preparedStatement =jdbcConnect.JDBConnection().prepareStatement(Sqlqueries.get_login_hata_user);
+				preparedStatement.setString(1, kullanici_adi);
 				rs= preparedStatement.executeQuery();
-				while(rs.next())
-				{user.setHatali_giris(rs.getInt("hatali_giris"));
+				while(rs.next()) 
+				{
+					user.setHatali_giris(rs.getInt("hatali_giris"));
+					user.setBlok_tarih(rs.getString("blok_tarih"));
 				
 			}
 			}
@@ -67,7 +69,6 @@ public class UserDAO implements UserI {
 	@Override
 	public void updatehata(User u) {
 		User user=null;
-		
 		try {
 			PreparedStatement preparedStatement = jdbcConnect.JDBConnection()
 					.prepareStatement(Sqlqueries.get_update_hata);
@@ -81,8 +82,24 @@ public class UserDAO implements UserI {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		if(u.getHatali_giris()>=3)
+			try {
+				PreparedStatement preparedStatement = jdbcConnect.JDBConnection()
+						.prepareStatement(Sqlqueries.get_uptade_blokTarih_user);				
+				preparedStatement.setString(1, u.getKullanici_adi());
+
+				preparedStatement.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+				
+			}
+		
+		
 
 	}
+	
 
 	// @Override
 	// public User updateblok(String blok_tarih) {
