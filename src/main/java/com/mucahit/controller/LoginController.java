@@ -44,14 +44,15 @@ public class LoginController {
 		return new ResponseEntity(null,HttpStatus.OK);
 
 	}
-	/*@GetMapping(path = "/updateblok", consumes = "application/json", produces = "application/json")
-	public ResponseEntity updateblok(@RequestBody User user) {
-		System.out.println("updateblok called");
+	
+	@PostMapping(path = "/defect", consumes = "application/json", produces = "application/json")
+	public ResponseEntity assignee(@RequestBody User user) {
+		System.out.println("defect called");
+
 		System.out.println(user.toString());
-		
-		return new ResponseEntity(userService.updateblok(user.getBlok_tarih()),HttpStatus.OK);
+
+		return new ResponseEntity(userService.assignee(user.getDk_id()), HttpStatus.OK);
 
 	}
-	*/
-	
+
 }

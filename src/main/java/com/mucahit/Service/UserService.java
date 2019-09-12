@@ -37,12 +37,10 @@ public class UserService implements UserI{
 
 
 
-	//@Override
-	/*public User updateblok(String blok_tarih) {
-
+	@Override
+	public List<User> assignee(Integer dk_id) {
 		
-		return userDao.updateblok(blok_tarih);
+		return userDao.assignee(dk_id);
 	}
-	*/
 
 }

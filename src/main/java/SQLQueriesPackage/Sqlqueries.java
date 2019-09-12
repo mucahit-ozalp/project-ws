@@ -12,7 +12,7 @@ public class Sqlqueries {
 	public static final String get_login_hata_user="Select hatali_giris from kullanici_db where kullanici_adi=?";
 	public static final String get_update_hata="UPDATE kullanici_db SET hatali_giris=? WHERE kullanici_adi=?";
 	public static final String get_uptade_blokTarih_user="UPDATE kullanici_db SET blok_tarih=CURRENT_TIMESTAMP WHERE kullanici_adi=?";
-	
+	public static final String get_assigne_user="select * from kullanici_db where dk_id=?";
 	
 	
 }

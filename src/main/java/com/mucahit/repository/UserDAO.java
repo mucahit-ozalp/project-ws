@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.mucahit.Service.JDBCConnection;
 import com.mucahit.Service.UserI;
+import com.mucahit.entity.Departmant;
 import com.mucahit.entity.User;
 
 import SQLQueriesPackage.Sqlqueries;
@@ -17,15 +18,20 @@ import SQLQueriesPackage.Sqlqueries;
 @Service
 public class UserDAO implements UserI {
 	public JDBCConnection jdbcConnect;
+	public User user;
 
 	public UserDAO(JDBCConnection jdbcConnect) {
 		this.jdbcConnect = jdbcConnect;
+	}
+	public UserDAO(User user)
+	{
+		this.user=user;
 	}
 
 	@Override
 	public User accessUser(String kullanici_adi, String parola) {
 
-		User user = new User();
+		user=null;
 
 		try {
 
@@ -68,7 +74,8 @@ public class UserDAO implements UserI {
 
 	@Override
 	public void updatehata(User u) {
-		User user=null;
+		
+		
 		try {
 			PreparedStatement preparedStatement = jdbcConnect.JDBConnection()
 					.prepareStatement(Sqlqueries.get_update_hata);
@@ -99,12 +106,36 @@ public class UserDAO implements UserI {
 		
 
 	}
+
+	@Override
+	public List<User> assignee(Integer dk_id) {
+		user=null;
+		List<User> list = new ArrayList<User>();
+		
+		try {
+			PreparedStatement preparedStatement=jdbcConnect.JDBConnection().prepareStatement(Sqlqueries.get_assigne_user);
+			preparedStatement.setInt(1, dk_id);
+			ResultSet rs=preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				user.setK_id(rs.getInt("k_id"));
+				user.setKullanici_adi(rs.getString("kullanici_adi"));
+				user.setHatali_giris(rs.getInt("hatali_giris"));
+				user.setGiris_tarihi(rs.getString("giris_tarihi"));
+				user.setBlok_tarih(rs.getString("blok_tarih"));
+				user.setDk_id(rs.getInt("dk_id"));
+				list.add(user);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		return list;
+	}
 	
 
-	// @Override
-	// public User updateblok(String blok_tarih) {
-
-	// return user;
-	// }
 
 }
